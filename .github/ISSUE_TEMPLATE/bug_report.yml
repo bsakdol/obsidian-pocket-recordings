@@ -1,0 +1,70 @@
+name: Bug report
+description: The plugin did something wrong, or failed to do something it should.
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please search [existing issues](https://github.com/bsakdol/obsidian-pocket-recordings/issues?q=is%3Aissue) first.
+
+        This is a public page. Never paste your Pocket API key or the text of a recording. To report a security problem, use the [private form](https://github.com/bsakdol/obsidian-pocket-recordings/security/advisories/new) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What the plugin did, and what you expected it to do instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smallest set of steps that makes it happen. Include the settings you changed, if any.
+      placeholder: |
+        1. Set Organize by to date.
+        2. Run Sync now.
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: Shown under Settings → Community plugins.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: obsidian-version
+    attributes:
+      label: Obsidian version
+      description: Shown under Settings → General.
+      placeholder: 1.13.2
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Every platform where you have seen it happen.
+      multiple: true
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - iOS
+        - Android
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Run **Copy diagnostics** from the command palette and paste the result. It never contains your API key, but your settings and error messages can include folder or note names, so read it before posting.
+      render: markdown
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: What the last sync report showed, console errors with **Debug logging** on, or whether a sync on another device was running at the same time.

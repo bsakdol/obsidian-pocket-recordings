@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest a new capability or a change to how the plugin works.
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Please search [existing issues](https://github.com/bsakdol/obsidian-pocket-recordings/issues?q=is%3Aissue) first. If you plan to open a pull request for it, wait until this issue is agreed.
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What you're trying to do, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you'd like
+      description: How you'd like the plugin to behave. Describe the result you want, not the code.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you've tried
+      description: Workarounds, settings, or other plugins you've tried, and why they fall short.
