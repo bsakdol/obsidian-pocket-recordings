@@ -133,7 +133,7 @@ export const DEFAULT_SETTINGS: Readonly<Settings> = Object.freeze({
 
 	intervalMinutes: 60,
 	debugLogging: false,
-} satisfies Settings) as Readonly<Settings>;
+} satisfies Settings);
 
 /**
  * The settings that decide which files exist and where. Changing them can move or supersede
