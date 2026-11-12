@@ -6,7 +6,7 @@ Obsidian plugin (TypeScript, bundled with esbuild) that syncs Pocket recordings 
 
 - `npm install` — needs Node 22.9 or later.
 - `npm test` — type-checks `src` and `tests`, then runs every `tests/*.test.ts` with `node:test`. Never touches the network or a real vault.
-- `npm run lint` — the rules Obsidian's community review applies, including sentence case for UI text.
+- `npm run lint` — the rules Obsidian's community review applies, including sentence case for UI text. In November 2026 the review flagged code that passed lint under typescript-eslint 8.46.0 and failed under 8.72.2, so keep the exact pin in `package.json` current; when the review flags something lint misses, bump typescript-eslint first to reproduce it.
 - `npm run build` — type-checks and writes `main.js`.
 
 A change is done only when all three pass. The release workflow runs the same checks and stops on any failure. Don't run `npm run dev` unless asked: it copies every build into the vault named in `.env`.
