@@ -27,6 +27,7 @@ A change is done only when all three pass. The release workflow runs the same ch
 - Network calls go only to `https://public.heypocketai.com/api/v1`, read-only, through `requestUrl` in `src/pocket/transport.ts`. No new hosts, no telemetry.
 - The API key lives in Obsidian's secret storage. Never put it in `data.json`, logs, or diagnostics.
 - The plugin never uses the clipboard API: Show diagnostics displays the report in a modal and the user copies it by hand.
+- The identity index scans the whole vault (`getMarkdownFiles`) because notes are found by `pocket_id` wherever the user moved them. Never narrow it to the base folder: a moved note would look missing and be re-created as a duplicate.
 
 ## Tests
 

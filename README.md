@@ -181,11 +181,13 @@ The plugin writes only these properties, all prefixed `pocket_`.
 | `pocket_duration` | when selected | Length in minutes. |
 | `pocket_language` | when selected | The recording's language. |
 
-Older notes from other Pocket plugins use different property names and are never read or changed.
+Older notes from other Pocket plugins use different property names. The plugin does not recognize them as its own, so it never changes them.
 
 ## Network use and privacy
 
 The plugin sends requests only to Pocket's public API at `https://public.heypocketai.com/api/v1`, authenticated with your API key, to read your recordings, folders, and tags. It never writes to Pocket, sends no telemetry, and contacts no other service. The plugin never reads or writes your clipboard. **Show diagnostics** shows a report with your API key removed, and you copy it yourself if you choose to. Error messages in the report can include note and folder names, so read it before you share it.
+
+To find its own notes wherever you have moved them, the plugin looks through the properties of every note in your vault for `pocket_id`. It reads no note text outside the notes it created.
 
 ## Development
 
