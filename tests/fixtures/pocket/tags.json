@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "data": [
+    { "id": "tg-highlights-01", "name": "highlights", "color": "#ffdd00", "usage_count": 1 },
+    { "id": "tg-internal-02", "name": "internal", "color": "#888888", "usage_count": 1 }
+  ]
+}

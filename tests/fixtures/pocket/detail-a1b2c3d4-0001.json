@@ -1,0 +1,60 @@
+{
+  "success": true,
+  "data": {
+    "id": "a1b2c3d4-0001-4000-8000-000000000001",
+    "title": "Acme kickoff",
+    "recording_at": "2026-11-10T15:00:00.000Z",
+    "created_at": "2026-11-10T15:31:00.000Z",
+    "updated_at": "2026-11-10T15:40:00.000Z",
+    "duration": 1834,
+    "state": "completed",
+    "language": "en",
+    "folder_id": "fd-acme-0003",
+    "tags": [{ "id": "tg-internal-02", "name": "internal", "color": "#888888" }],
+    "recorded_by": { "display_name": "Owner Name", "email": "owner@example.com", "user_id": "usr-0001" },
+    "speakers": {
+      "SPEAKER_00": { "name": "Dana", "speakerId": "SPEAKER_00" },
+      "SPEAKER_01": { "name": "Lee", "speakerId": "SPEAKER_01" }
+    },
+    "transcript": {
+      "segments": [
+        { "start": 0, "end": 4.5, "speaker": "SPEAKER_00", "speakerName": "Dana", "text": "Welcome to the kickoff.", "originalText": "Welcome to the kickoff." },
+        { "start": 4.5, "end": 9.25, "speaker": "SPEAKER_01", "speakerName": "Lee", "text": "Thanks, glad to start.", "originalText": "Thanks, glad to start." },
+        { "start": 3725.1, "end": 3730, "speaker": "SPEAKER_00", "speakerName": "Dana", "text": "Let's wrap up.", "originalText": "Let's wrap up." }
+      ]
+    },
+    "transcript_error": null,
+    "summarizations": {
+      "sum-0001": {
+        "id": "sum-0001",
+        "summarizationId": "sum-0001",
+        "processingStatus": "completed",
+        "createdAt": "2026-11-10T15:35:00.000Z",
+        "updatedAt": "2026-11-10T15:40:00.000Z",
+        "v2": {
+          "summary": {
+            "title": "Acme kickoff",
+            "emoji": "🚀",
+            "markdown": "## Overview\nThe team agreed on the Q4 scope.\n\n## Decisions\n- Ship the pilot in December"
+          },
+          "actionItems": {
+            "actionItems": [
+              { "id": "ai-0001", "title": "Send proposal", "isCompleted": false, "dueDate": "2026-11-14", "status": "open", "assignee": "Dana" },
+              { "id": "ai:0002/x", "title": "Book venue", "isCompleted": true, "dueDate": null, "status": "done", "assignee": null }
+            ]
+          },
+          "mindMap": {
+            "title": "Acme kickoff",
+            "children": [
+              { "title": "Scope", "children": [{ "title": "Pilot", "children": [] }] },
+              { "title": "Timeline", "children": [] }
+            ]
+          }
+        }
+      }
+    },
+    "summarizations_errors": [],
+    "translation": null,
+    "translation_error": null
+  }
+}

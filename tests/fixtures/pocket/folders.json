@@ -1,0 +1,73 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "sp-work-0001",
+      "name": "Work",
+      "kind": "space",
+      "space_id": "sp-work-0001",
+      "parent_folder_id": null,
+      "color": "#3366ff",
+      "created_at": "2025-10-01T10:00:00.000Z",
+      "updated_at": "2025-10-01T10:00:00.000Z",
+      "recording_count": 1,
+      "total_recording_count": 3,
+      "children": [
+        {
+          "id": "fd-clients-0002",
+          "name": "Clients",
+          "kind": "folder",
+          "space_id": "sp-work-0001",
+          "parent_folder_id": null,
+          "color": "#33aa66",
+          "created_at": "2025-10-02T10:00:00.000Z",
+          "updated_at": "2025-10-02T10:00:00.000Z",
+          "recording_count": 0,
+          "total_recording_count": 2,
+          "children": [
+            {
+              "id": "fd-acme-0003",
+              "name": "Acme: Q4",
+              "kind": "folder",
+              "space_id": "sp-work-0001",
+              "parent_folder_id": "fd-clients-0002",
+              "color": "#aa3366",
+              "created_at": "2025-10-03T10:00:00.000Z",
+              "updated_at": "2025-10-03T10:00:00.000Z",
+              "recording_count": 2,
+              "total_recording_count": 2,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp-personal-0004",
+      "name": "Personal",
+      "kind": "space",
+      "space_id": "sp-personal-0004",
+      "parent_folder_id": null,
+      "color": "#ffaa00",
+      "created_at": "2025-10-01T11:00:00.000Z",
+      "updated_at": "2025-10-01T11:00:00.000Z",
+      "recording_count": 0,
+      "total_recording_count": 2,
+      "children": [
+        {
+          "id": "fd-health-0005",
+          "name": "Health",
+          "kind": "folder",
+          "space_id": "sp-personal-0004",
+          "parent_folder_id": null,
+          "color": "#00aaff",
+          "created_at": "2025-10-04T10:00:00.000Z",
+          "updated_at": "2025-10-04T10:00:00.000Z",
+          "recording_count": 2,
+          "total_recording_count": 2,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

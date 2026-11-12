@@ -1,0 +1,65 @@
+### OS-Specific ###
+# macOS
+.DS_Store
+._*
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+# Linux
+*~
+
+### Security & Credentials ###
+# Not a secrets control — won't untrack already-committed files.
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.ppk
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+### Editors & Tools ###
+# VSCode — commit shared workspace config, ignore the rest
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+*.vsix
+# Claude Code — ignore personal/local state only
+.claude/settings.local.json
+.claude/agent-memory-local/
+CLAUDE.local.md
+
+### Node ###
+# Dependencies
+node_modules/
+# Package-manager debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Test coverage
+coverage/
+# npm pack output
+*.tgz
+
+### TypeScript ###
+# Compiled output (tsc outDir convention; match your tsconfig)
+dist/
+# Incremental build info (tsc --incremental / --build)
+*.tsbuildinfo
+
+### Project-specific ###
+main.js
+data.json
+.probe/
+.test-dist/

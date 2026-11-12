@@ -1,0 +1,9 @@
+{
+	"id": "pocket-recordings",
+	"name": "Pocket Recordings",
+	"version": "0.1.0",
+	"minAppVersion": "1.13.2",
+	"description": "Sync Pocket recordings into conversation and insight notes, with transcripts, summaries, action items, and mind maps.",
+	"author": "Bradley Sakdol",
+	"isDesktopOnly": false
+}
