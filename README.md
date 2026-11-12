@@ -71,7 +71,7 @@ Commands (none has a default hotkey):
 | Test connection | Checks that Pocket accepts the API key. |
 | Toggle auto-sync on this device | Turns scheduled sync on or off for this device only. |
 | Show last sync report | Opens what the last sync did, with links to the notes. |
-| Copy diagnostics | Copies a report for bug reports, without your API key. |
+| Show diagnostics | Shows a report for bug reports, without your API key, in a window you can copy from. |
 
 On desktop, the status bar shows when the last sync ran, whether one is running, and any error. Click it to open the report.
 
@@ -121,7 +121,7 @@ These change what notes show and apply on the next sync without asking.
 ### Advanced
 
 - **Debug logging**: writes sync detail to the developer console.
-- **Copy diagnostics**: as the command above.
+- **Show diagnostics**: as the command above.
 
 ## How sync works
 
@@ -185,7 +185,7 @@ Older notes from other Pocket plugins use different property names and are never
 
 ## Network use and privacy
 
-The plugin sends requests only to Pocket's public API at `https://public.heypocketai.com/api/v1`, authenticated with your API key, to read your recordings, folders, and tags. It never writes to Pocket, sends no telemetry, and contacts no other service. Diagnostics are copied to your clipboard only when you ask, with the API key removed.
+The plugin sends requests only to Pocket's public API at `https://public.heypocketai.com/api/v1`, authenticated with your API key, to read your recordings, folders, and tags. It never writes to Pocket, sends no telemetry, and contacts no other service. The plugin never reads or writes your clipboard. **Show diagnostics** shows a report with your API key removed, and you copy it yourself if you choose to. Error messages in the report can include note and folder names, so read it before you share it.
 
 ## Development
 
@@ -252,7 +252,7 @@ The probe writes raw responses, including your recordings' text, to `.probe/`, w
 
 ## Contributing
 
-To report a bug or propose a change, [open an issue](https://github.com/bsakdol/obsidian-pocket-recordings/issues/new/choose). When reporting a sync problem, include the output of **Copy diagnostics**. Pull requests are welcome once the change has been discussed and agreed in an issue. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to make a change, and [SECURITY.md](SECURITY.md) how to report a vulnerability privately.
+To report a bug or propose a change, [open an issue](https://github.com/bsakdol/obsidian-pocket-recordings/issues/new/choose). When reporting a sync problem, include the output of **Show diagnostics**. Pull requests are welcome once the change has been discussed and agreed in an issue. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to make a change, and [SECURITY.md](SECURITY.md) how to report a vulnerability privately.
 
 ## License
 

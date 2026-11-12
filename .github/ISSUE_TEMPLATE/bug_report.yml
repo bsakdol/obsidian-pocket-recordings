@@ -61,7 +61,7 @@ body:
     id: diagnostics
     attributes:
       label: Diagnostics
-      description: Run **Copy diagnostics** from the command palette and paste the result. It never contains your API key, but your settings and error messages can include folder or note names, so read it before posting.
+      description: Run **Show diagnostics** from the command palette, copy the report, and paste it here. It never contains your API key, but your settings and error messages can include folder or note names, so read it before posting.
       render: markdown
   - type: textarea
     id: more

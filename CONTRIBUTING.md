@@ -4,7 +4,7 @@ Thanks for helping. This plugin has one maintainer, working on it in their own t
 
 ## Reporting a bug
 
-[Open a bug report](https://github.com/bsakdol/obsidian-pocket-recordings/issues/new?template=bug_report.yml) and include the output of **Copy diagnostics**. Issues are public: never paste your Pocket API key or the text of a recording.
+[Open a bug report](https://github.com/bsakdol/obsidian-pocket-recordings/issues/new?template=bug_report.yml) and include the output of **Show diagnostics**. Issues are public: never paste your Pocket API key or the text of a recording.
 
 To report a security problem, follow [SECURITY.md](SECURITY.md) instead. Don't open a public issue.
 

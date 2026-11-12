@@ -26,6 +26,7 @@ A change is done only when all three pass. The release workflow runs the same ch
 - Paths must be identical on every device for the same recording and settings. Never use a device-local value such as the system time zone.
 - Network calls go only to `https://public.heypocketai.com/api/v1`, read-only, through `requestUrl` in `src/pocket/transport.ts`. No new hosts, no telemetry.
 - The API key lives in Obsidian's secret storage. Never put it in `data.json`, logs, or diagnostics.
+- The plugin never uses the clipboard API: Show diagnostics displays the report in a modal and the user copies it by hand.
 
 ## Tests
 
