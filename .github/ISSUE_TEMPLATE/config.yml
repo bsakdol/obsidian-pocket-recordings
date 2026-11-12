@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/bsakdol/obsidian-pocket-recordings/security/advisories/new
+    about: Report it privately here, never in a public issue.
+  - name: Problems with Pocket itself
+    url: https://heypocket.com
+    about: Recording, transcription, and summary quality come from Pocket, not this plugin. Contact Pocket about those.

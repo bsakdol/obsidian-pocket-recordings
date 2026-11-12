@@ -252,7 +252,7 @@ The probe writes raw responses, including your recordings' text, to `.probe/`, w
 
 ## Contributing
 
-To report a bug or propose a change, [open an issue](https://github.com/bsakdol/obsidian-pocket-recordings/issues). When reporting a sync problem, include the output of **Copy diagnostics**. Pull requests are welcome once the change has been discussed and agreed in an issue. [Development](#development) explains how to build and test a change.
+To report a bug or propose a change, [open an issue](https://github.com/bsakdol/obsidian-pocket-recordings/issues/new/choose). When reporting a sync problem, include the output of **Copy diagnostics**. Pull requests are welcome once the change has been discussed and agreed in an issue. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to make a change, and [SECURITY.md](SECURITY.md) how to report a vulnerability privately.
 
 ## License
 
