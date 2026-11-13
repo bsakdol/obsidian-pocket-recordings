@@ -1,23 +1,97 @@
 name: Release
 
+# Runs on every push to main, not only ones that touch manifest.json: if a
+# release fails, the fix (say, a missing changelog section) lands as its own
+# commit, and that commit has to start the release again.
 on:
   push:
-    tags:
-      - "*.*.*"
+    branches:
+      - main
 
 permissions:
-  contents: write
-  id-token: write
-  attestations: write
+  contents: read
+
+# Never cancel a release halfway through. A queued run waits for the one ahead.
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  release:
-    name: Build and release
+  check:
+    name: Check for a new version
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      release: ${{ steps.tag.outputs.release }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
+
+      - name: Read version
+        id: version
+        run: |
+          version=$(node -p 'require("./manifest.json").version')
+          # Obsidian downloads the release tagged exactly with this version, so it must be bare digits.
+          if ! [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error file=manifest.json::Version \"$version\" is not X.Y.Z in digits only."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      # The tag decides: no tag means this version is new, a tag with a release
+      # means it already shipped. A tag without a release means a run created
+      # the tag and failed; tags can't be moved or reused, so that version is spent.
+      - name: Look for the version's tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          status=0
+          git ls-remote --exit-code --tags origin "refs/tags/$VERSION" > /dev/null || status=$?
+          if [ "$status" -eq 2 ]; then
+            echo "Version $VERSION has no tag yet. Releasing it."
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          elif [ "$status" -ne 0 ]; then
+            echo "::error::Could not list tags (git ls-remote exited $status)."
+            exit 1
+          elif gh release view "$VERSION" > /dev/null; then
+            echo "Version $VERSION is already released. Nothing to do."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Tag $VERSION exists without a release. Tags are never reused, so release the next patch version instead."
+            exit 1
+          fi
+
+  release:
+    name: Build and release
+    needs: check
+    if: needs.check.outputs.release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    env:
+      VERSION: ${{ needs.check.outputs.version }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Take release notes from the changelog
+        run: |
+          awk -v heading="## [$VERSION]" '
+            index($0, heading) == 1 { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
+            echo "::error file=CHANGELOG.md::No \"## [$VERSION]\" section with entries."
+            exit 1
+          fi
+          cat "$RUNNER_TEMP/notes.md"
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
@@ -41,7 +115,9 @@ jobs:
         with:
           subject-path: main.js
 
+      # Creating the release also creates the tag, on the commit that was built.
+      # It runs last so a failed check never leaves a tag behind.
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --generate-notes --verify-tag main.js manifest.json
+        run: gh release create "$VERSION" --target "$GITHUB_SHA" --title "$VERSION" --notes-file "$RUNNER_TEMP/notes.md" main.js manifest.json
