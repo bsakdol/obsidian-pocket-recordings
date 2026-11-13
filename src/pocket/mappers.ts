@@ -31,7 +31,7 @@ export function mapTag(raw: unknown): PocketTag | null {
 
 /** Maps one listing item. A malformed item throws: dropping it would make it look deleted. */
 export function mapListed(raw: unknown): ListedRecording {
-	const value = asObject(raw) as (RawRecording & Json) | null;
+	const value = asObject(raw);
 	const id = str(value?.id);
 	const recordingAt = str(value?.recording_at) ?? str(value?.created_at);
 	if (!value || !id || !recordingAt) {
@@ -56,7 +56,7 @@ export function mapListed(raw: unknown): ListedRecording {
 
 /** Maps a recording detail. Anything malformed is a ShapeError for this recording only. */
 export function mapDetail(raw: unknown, listed: ListedRecording): RecordingDetail {
-	const value = asObject(raw) as (RawRecording & Json) | null;
+	const value = asObject(raw);
 	if (!value) {
 		throw new ShapeError(`Pocket returned a malformed detail for recording ${listed.id}.`);
 	}

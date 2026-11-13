@@ -19,6 +19,7 @@ import { emptyReport } from "./sync/report";
 import { mergeOptions, messageOf, runSync, testConnection, type SyncOptions, type SyncOutcome } from "./sync/service";
 import { evaluateSwitch } from "./sync/switchCount";
 import { confirmSwitch } from "./ui/confirmSwitchModal";
+import { DiagnosticsModal } from "./ui/diagnosticsModal";
 import { ReportModal } from "./ui/reportModal";
 import { ObsidianVaultOps } from "./vault/obsidianVaultOps";
 
@@ -58,7 +59,8 @@ export default class PocketRecordingsPlugin extends Plugin implements SettingsHo
 		this.addCommand({ id: "test-connection", name: "Test connection", callback: () => void this.testConnection() });
 		this.addCommand({ id: "toggle-auto-sync", name: "Toggle auto-sync on this device", callback: () => this.toggleAutoSync() });
 		this.addCommand({ id: "show-report", name: "Show last sync report", callback: () => this.openReport() });
-		this.addCommand({ id: "copy-diagnostics", name: "Copy diagnostics", callback: () => void this.copyDiagnostics() });
+		// The id keeps its old name so hotkeys users already set for it still work.
+		this.addCommand({ id: "copy-diagnostics", name: "Show diagnostics", callback: () => this.showDiagnostics() });
 
 		// Sync waits for the workspace, so the metadata cache has started indexing.
 		this.app.workspace.onLayoutReady(() => {
@@ -115,7 +117,7 @@ export default class PocketRecordingsPlugin extends Plugin implements SettingsHo
 		new ReportModal(this.app, this.device.lastReport).open();
 	}
 
-	async copyDiagnostics(): Promise<void> {
+	showDiagnostics(): void {
 		const key = this.apiKey();
 		const text = buildDiagnostics({
 			pluginVersion: this.manifest.version,
@@ -128,8 +130,7 @@ export default class PocketRecordingsPlugin extends Plugin implements SettingsHo
 			recentErrors: this.log.recentErrors(),
 			secrets: key ? [key] : [],
 		});
-		await navigator.clipboard.writeText(text);
-		new Notice("Diagnostics copied. They do not include your API key.");
+		new DiagnosticsModal(this.app, text).open();
 	}
 
 	/** Applies structure edits once the user confirms the count. */

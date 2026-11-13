@@ -24,7 +24,7 @@ export interface SettingsHost {
 	filterLabel(key: FilterKey, id: string): string;
 	resyncAll(): void;
 	openReport(): void;
-	copyDiagnostics(): Promise<void>;
+	showDiagnostics(): void;
 }
 
 const SECTION_NAMES: Record<Section, string> = {
@@ -237,7 +237,7 @@ export class PocketSettingTab extends PluginSettingTab {
 				heading: "Advanced",
 				items: [
 					toggle("debugLogging", "Debug logging", "Writes sync detail to the developer console."),
-					{ name: "Copy diagnostics", desc: "Copies a report without your API key, for bug reports.", action: () => void this.host.copyDiagnostics() },
+					{ name: "Show diagnostics", desc: "Shows a report without your API key, for bug reports.", action: () => this.host.showDiagnostics() },
 				],
 			},
 		];
