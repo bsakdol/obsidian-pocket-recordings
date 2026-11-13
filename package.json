@@ -1,6 +1,6 @@
 {
 	"name": "pocket-recordings",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Sync Pocket recordings into conversation and insight notes, with transcripts, summaries, action items, and mind maps.",
 	"main": "main.js",
 	"type": "module",

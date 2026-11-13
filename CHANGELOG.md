@@ -4,6 +4,8 @@ All notable changes to Pocket Recordings are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-12
+
 ### Changed
 
 - **Copy diagnostics** is now **Show diagnostics**. It shows the report in a window for you to copy yourself instead of writing to your clipboard, so the plugin never touches your clipboard. Existing hotkeys for the command still work.
