@@ -44,18 +44,19 @@ A change is done only when all three pass. The release workflow runs the same ch
 
 ## Releases
 
-Obsidian installs a plugin by reading `version` from `manifest.json` on the default branch, then downloading the GitHub release whose tag is exactly that version. A release that breaks this rule fails for every user, so follow these steps in order:
+Obsidian installs a plugin by reading `version` from `manifest.json` on the default branch, then downloading the GitHub release whose tag is exactly that version. `main` accepts only squash-merged pull requests, so a release is a pull request, and merging it is what publishes:
 
-1. Start on `main` with a clean tree and all three checks passing.
+1. Start a new branch from an up-to-date `main`, with all three checks passing.
 2. If the release needs a newer Obsidian API, raise `minAppVersion` in `manifest.json` first.
-3. Run `npm version patch --no-git-tag-version` (or `minor`, `major`). This updates `package.json`, `manifest.json`, and `versions.json` together. The flag matters: without it npm makes a tag with a `v` prefix, and Obsidian rejects that.
-4. In `CHANGELOG.md`, rename `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD` and add a new, empty `## [Unreleased]` above it.
-5. Commit every file the bump changed, plus `CHANGELOG.md`, as `chore: release X.Y.Z`.
-6. Tag with the bare version, no prefix: `git tag -a X.Y.Z -m "X.Y.Z"`.
-7. Push the tag first: `git push origin X.Y.Z`. Wait for the release workflow to pass, and confirm the release has `main.js` and `manifest.json` attached. The workflow writes notes from pull request titles; replace them with the version's section from `CHANGELOG.md`.
-8. Then push `main`. If you push `main` first, Obsidian reports an update that has no release to download.
+3. Run `npm version patch --no-git-tag-version` (or `minor`, `major`). This updates `package.json`, `manifest.json`, and `versions.json` together. The flag matters: without it npm commits and makes a tag with a `v` prefix, and Obsidian rejects that.
+4. In `CHANGELOG.md`, rename `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD` and add a new, empty `## [Unreleased]` above it. The release notes come from this section, so it must have entries.
+5. Commit every file the bump changed, plus `CHANGELOG.md`, as `chore: release X.Y.Z`, and open a pull request with the same title.
+6. Squash-merge it once CI passes. The release workflow runs on every push to `main`. When `manifest.json` names a version with no tag yet, it runs lint, test, and build, attests `main.js`, then creates tag `X.Y.Z` on the merge commit and publishes the release with `main.js`, `manifest.json`, and the version's `CHANGELOG.md` section as notes. A push that doesn't change the version does nothing.
+7. Confirm the workflow passed and the release has both files attached.
 
-Never move, delete, or reuse a published tag. To fix a bad release, ship the next patch version.
+For the few minutes the workflow runs, `main` names a version that has no release yet, and an update in Obsidian fails until it exists. If the workflow fails, fix the cause in a new pull request without changing the version: merging it runs the release again. The workflow creates the tag only in its last step, so a failed check never uses up a version.
+
+Never create release tags by hand, and never move, delete, or reuse a published tag. If a tag exists without a release, the workflow stops: ship the next patch version.
 
 ## References
 
